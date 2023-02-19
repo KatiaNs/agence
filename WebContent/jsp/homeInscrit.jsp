@@ -368,8 +368,9 @@ Insurance carousel
 					 /*	html += '<img class="img-responsive img-insurance" src="' + val.image + '" alt="Picture 1">';  */
 					 /* html += '<img class="img-responsive img-insurance" src="https://picsum.photos/200" alt="Picture 1">'; */
 	                html += '<div class="insurance-caption">'
-	                html += '<h4 class="insurance-caption-title">' + val.title + '</h4>';
-	                console.log(val.title);
+	               /*  html += '<h4 class="insurance-caption-title">' + val.title + '</h4>'; */
+	              /*  html += '<h4 class="insurance-caption-title">' + val.idOffre + '</h4>'; */
+	                console.log(val.idOffre);
 	                html += '<h3 class="insurance-caption-title">' + val.price + '</h3>';
 	               /*  html += '<p class="insurance-caption-description">' + val.description + '</p>'; */
 	              	html += '<a href="offreDetails.jsp?idOffre=' + val.idOffre + '">' + "En savoir plus" + '</a>';
