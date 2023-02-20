@@ -279,7 +279,6 @@ Insurance carousel
     
     
     
-    
 <style>
 	body {
 		background-color: #ffffff;
@@ -372,6 +371,9 @@ Insurance carousel
 	              /*  html += '<h4 class="insurance-caption-title">' + val.idOffre + '</h4>'; */
 	                console.log(val.idOffre);
 	                html += '<h3 class="insurance-caption-title">' + val.price + '</h3>';
+	              	 html += '<img src= "' + val.photo + '" width="150" height="150" class="image"/>';
+	               /* html += '<img src= "../images/img2.jpg" width="150" height="150" class="image"/>'; */
+	                console.log(val.photo);
 	               /*  html += '<p class="insurance-caption-description">' + val.description + '</p>'; */
 	              	html += '<a href="offreDetails.jsp?idOffre=' + val.idOffre + '">' + "En savoir plus" + '</a>';
 	                html += '</div>';
@@ -504,6 +506,7 @@ Insurance carousel
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="h-100">
                         <h1 class="display-6 text-center">Trouvez votre bien immobilier idéal</h1>
+
 
 
                        <form>

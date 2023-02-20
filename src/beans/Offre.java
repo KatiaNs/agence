@@ -24,10 +24,19 @@ public class Offre implements Serializable {
 	private Integer etage;
 	private Double surfaceMaison;
 	private Double surfaceTerrain;
-	private Integer presenceParking;
+	private String presenceParking;
 	private Integer nombrePieces;
 	private String libelle;
+	private String photo;
 	
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
 	public Offre() {
 		super();
 	}
@@ -137,11 +146,11 @@ public class Offre implements Serializable {
 		this.surfaceTerrain = surfaceTerrain;
 	}
 
-	public Integer getPresenceParking() {
+	public String getPresenceParking() {
 		return presenceParking;
 	}
 
-	public void setPresenceParking(Integer presenceParking) {
+	public void setPresenceParking(String presenceParking) {
 		this.presenceParking = presenceParking;
 	}
 

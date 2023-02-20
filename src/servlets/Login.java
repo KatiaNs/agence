@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Date;
@@ -14,6 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.sun.xml.internal.bind.api.impl.NameConverter.Standard;
+
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+
+import beans.User;
+
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
@@ -25,12 +36,6 @@ public class Login extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
-	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -39,9 +44,19 @@ public class Login extends HttpServlet {
 	
 	protected void doPostVersion2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String role = "";
+		
+		User user = null;
+		
+		PrintWriter out = response.getWriter();
+		JSONArray list = new JSONArray();
+		JSONObject obj = new JSONObject();
+		HttpSession session = request.getSession();
+		JSONObject json = new JSONObject();
+		
         try {
         	
         	String email = request.getParameter("email");
+        //	String decode = URLDecoder.decode(email);
         	String password = request.getParameter("password");
         	
         	
@@ -64,9 +79,17 @@ public class Login extends HttpServlet {
             
             ResultSet rs = st.executeQuery();
             
-            
               
             ResultSet rs2 = st2.executeQuery();
+            
+           
+			String lastName = "";
+			String firstName = "";
+			String phone = "";
+			String address = "";
+            
+            Integer status = 0;
+            String errorMessage = "";
             
             
             if(rs.next()) {
@@ -75,16 +98,139 @@ public class Login extends HttpServlet {
             	System.out.println("Role in while: " + role);
             	
             	if(role.equals("client")) {
+            		user = new User();
+            		
+            		
+            		firstName = rs.getString("firstName");
+            		lastName = rs.getString("lastName");
+            		status = 200;
+            		
+            		
+            		user.setFirstName(firstName);
+            		user.setLastName(lastName);
+            		user.setEmail(email);
+            		user.setPassword(password);
+            		//user.setStatus(status);
+            		
+            		session.setAttribute("email", email);
+            		
+            		//obj.put("status", status);
+    				
+    				obj.put("lastName", lastName);
+    				obj.put("firstName", firstName);
+    				obj.put("email", email);
+    				
+
+    				list.add(obj);
+    				
+    				json.put("jsonLogin", list);
+    				
+    					
+    			//	out.println(list.toJSONString());
+    			//	out.flush();
+
+
+    				System.out.println("User is a client");
+    				System.out.println(st.toString());
             		
                 	response.sendRedirect("jsp/homeInscrit.jsp");
                 	//request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
             	}
             	
             	else if(role.equals("agent")) {
+            		user = new User();
+            		
+            		
+            		firstName = rs.getString("firstName");
+            		lastName = rs.getString("lastName");
+            		status = 200;
+            		
+            		
+            		user.setFirstName(firstName);
+            		user.setLastName(lastName);
+            		user.setEmail(email);
+            		user.setPassword(password);
+            	//	user.setStatus(status);
+            		
+            		session.setAttribute("email", email);
+            		
+            	//	obj.put("status", status);
+    				
+    				obj.put("lastName", lastName);
+    				obj.put("firstName", firstName);
+    				obj.put("email", email);
+    				
+
+    				list.add(obj);
+    				
+    				json.put("jsonLogin", list);
+    				
+    					
+    			//	out.println(list.toJSONString());
+    			//	out.flush();
+
+
+    				System.out.println("User is a an agent");
+    				System.out.println(st.toString());
+            		
+            		
+            		response.sendRedirect("jsp/homeAgent.jsp");	
+            	}
+            	
+            	else if(role.equals("admin")) {
+            		user = new User();
+            		
+            		
+            		firstName = rs.getString("firstName");
+            		lastName = rs.getString("lastName");
+            		status = 200;
+            		
+            		
+            		user.setFirstName(firstName);
+            		user.setLastName(lastName);
+            		user.setEmail(email);
+            		user.setPassword(password);
+            	//	user.setStatus(status);
+            		
+            		session.setAttribute("email", email);
+            		
+            	//	obj.put("status", status);
+    				
+    				obj.put("lastName", lastName);
+    				obj.put("firstName", firstName);
+    				obj.put("email", email);
+    				
+
+    				list.add(obj);
+    				
+    				json.put("jsonLogin", list);
+    				
+    					
+    			//	out.println(list.toJSONString());
+    				//out.flush();
+
+
+    				System.out.println("User is a an admin");
+    				System.out.println(st.toString());
+            		
+            		
             		response.sendRedirect("jsp/homeAgent.jsp");	
             	}
             	
             	else  {
+            		status = 404;
+    				errorMessage = "Nom identifiant ou mot de passe incorrect";
+
+    				//obj.put("status", status);
+    			//	obj.put("errorMsg", errorMessage);
+
+    				list.add(obj);
+    			//	out.println(list.toJSONString());
+    			//	out.flush();
+
+
+    				System.out.println("error, no user found");
+    				
             		response.sendRedirect("jsp/home.jsp");	
             	}
             	
@@ -92,7 +238,23 @@ public class Login extends HttpServlet {
             } 
             
             else {
-        	response.sendRedirect("jsp/login.jsp");
+				/*
+				 * status = 404; errorMessage = "Nom identifiant ou mot de passe incorrect";
+				 * 
+				 * obj.put("status", status); obj.put("errorMsg", errorMessage);
+				 * 
+				 * list.add(obj); out.println(list.toJSONString()); out.flush();
+				 */
+            	 status = 404;
+            //	 obj.put("status", status); 
+            //	 obj.put("errorMsg", errorMessage);
+            	 list.add(obj); 
+            	// out.println(list.toJSONString()); 
+            //	 out.flush();
+
+            	 response.sendRedirect("jsp/login.jsp");
+				System.out.println("error, no user found");
+				/* response.sendRedirect("jsp/login.jsp"); */
         	//request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);	
         }
         

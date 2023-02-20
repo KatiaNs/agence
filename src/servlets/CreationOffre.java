@@ -61,6 +61,7 @@ protected void doPostVersion2(HttpServletRequest request, HttpServletResponse re
 	Double surfaceTerrain = Double.parseDouble(request.getParameter("surfaceTerrain"));
 	Integer nombrePiece = Integer.parseInt(request.getParameter("nombrePiece"));
 	String description = request.getParameter("description");
+	String photo = request.getParameter("photo");
 	
 	String email = "katia.nseir@gmail.co";
 	Integer idEtat = 1;
@@ -74,8 +75,10 @@ protected void doPostVersion2(HttpServletRequest request, HttpServletResponse re
             Connection connection = dataSource.getConnection();
            // Connection connection2 = dataSource.getConnection();
             
+            String photoUrl = "../images/" + photo;
+            
             java.sql.PreparedStatement stInsertOffre = connection.prepareStatement("INSERT INTO offres (prix, idEtat, mail, "
-					+ "typeBien, typeOffre, description, addresse, etage, surfaceMaison, surfaceTerrain, presenceParking, nombrePieces) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					+ "typeBien, typeOffre, description, addresse, etage, surfaceMaison, surfaceTerrain, presenceParking, nombrePieces, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             
             System.out.println("test after query");
 			
@@ -97,6 +100,7 @@ protected void doPostVersion2(HttpServletRequest request, HttpServletResponse re
             stInsertOffre.setDouble(10, surfaceTerrain);
             stInsertOffre.setString(11, parking);
             stInsertOffre.setInt(12, nombrePiece);
+            stInsertOffre.setString(13, photoUrl);
             
             System.out.println("what is hapeening??");
             
@@ -108,6 +112,7 @@ protected void doPostVersion2(HttpServletRequest request, HttpServletResponse re
 		//	out.flush();
 
 			session.setAttribute("email", email);
+			session.setAttribute("photo", photo);
 			
 			System.out.println("before execute");
 			

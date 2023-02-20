@@ -56,6 +56,17 @@
     <link href="../css/style.css" rel="stylesheet">
     
     
+    
+    <script>
+
+    var loadFile = function(event) {
+    	var image = document.getElementById('output');
+    	image.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    </script>
+    
+    
 </head>
 <body>
 
@@ -173,6 +184,13 @@
   <div class="col">
     <input type="text" class="form-control" placeholder="Nb. de pièces" aria-label="Nb. de pièces" id="nombrePiece" name="nombrePiece">
   </div>
+  
+  <div class="col">
+  <input type="file" id="photo" name="photo" accept="image/png, image/jpeg" onchange="loadFile(event)">
+	<label for="photo"></label>
+	<img id="output" width="150" />
+	</div>
+  
   <div class="form-group">
     <br>
   <label for="exampleFormControlTextarea1">Description du bien </label>

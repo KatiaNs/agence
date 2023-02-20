@@ -22,12 +22,12 @@ import org.json.simple.JSONObject;
 import beans.Offre;
 
 
-@WebServlet("/HomeOffres")
-public class HomeOffres extends HttpServlet {
+@WebServlet("/HomeOffresAgent")
+public class HomeOffresAgent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
-    public HomeOffres() {
+    public HomeOffresAgent() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -62,8 +62,8 @@ public class HomeOffres extends HttpServlet {
             Connection connection = dataSource.getConnection();
             Connection connection2 = dataSource.getConnection();
             
-            String email = "katia.nseir@gmail.co";
-           // String email = "john.doe@gmail.com";
+            //String email = "katia.nseir@gmail.co";
+            String email = "john.doe@gmail.com";
             String role = "";
             
             java.sql.PreparedStatement stGetUserRole = connection.prepareStatement("SELECT user.idRole, role.role FROM user JOIN role ON user.idRole = role.id WHERE user.email = '" + email + "';");
@@ -98,18 +98,8 @@ public class HomeOffres extends HttpServlet {
             		
             		
     				Integer id = 0;
+    				//String title = "";
     				Double price = 0.0;
-    				String typeBien = "";
-    				String typeOffre = "";
-    				String description = "";
-    				String adresse = "";
-    				Integer etage = 0;
-    				Double surfaceMaison = 0.0;
-    				Double surfaceTerrain = 0.0;
-    				String parking = "";
-    				Integer piece = 0;
-    				String photo = "";
-    				
     				
     				while(rsSelect.next()) {
     					
@@ -120,46 +110,18 @@ public class HomeOffres extends HttpServlet {
     					
     				id = rsSelect.getInt("id");
     				System.out.println("id: " + id);
+//    				title = rsSelect.getString("titre");
     				price = rsSelect.getDouble("prix");
     				System.out.println("prix: " + price);
-    				System.out.println("photo" + photo);
-    				typeBien = rsSelect.getString("typeBien");
-    				typeOffre = rsSelect.getString("typeOffre");
-    				description = rsSelect.getString("description");
-    				adresse = rsSelect.getString("addresse");
-    				etage = rsSelect.getInt("etage");
-    				surfaceMaison = rsSelect.getDouble("surfaceMaison");
-    				surfaceTerrain = rsSelect.getDouble("surfaceTerrain");
-    				parking = rsSelect.getString("presenceParking");
-    				piece = rsSelect.getInt("nombrePieces");
-    				photo = rsSelect.getString("photo");
     				
 
+//    				offre.setTitle(title);
     				offre.setPrice(price);
-    				offre.setTypeBien(typeBien);
-    				offre.setTypeOffre(typeOffre);
-    				offre.setDescription(description);
-    				offre.setAddress(adresse);
-    				offre.setEtage(etage);
-    				offre.setSurfaceMaison(surfaceMaison);
-    				offre.setSurfaceTerrain(surfaceTerrain);
-    				offre.setPresenceParking(parking);
-    				offre.setNombrePieces(piece);
-    				offre.setPhoto(photo);
     				
     				
     				obj.put("idOffre", id);
+//    				obj.put("title", title);
     				obj.put("price", price);
-    				obj.put("typeBien", typeBien);
-    				obj.put("typeOffre", typeOffre);
-    				obj.put("description", description);
-    				obj.put("adresse", adresse);
-    				obj.put("etage", etage);
-    				obj.put("surfaceMaison", surfaceMaison);
-    				obj.put("surfaceTerrain", surfaceTerrain);
-    				obj.put("parking", parking);
-    				obj.put("piece", piece);
-    				obj.put("photo", photo);
     				
 
     				arrayOffre.add(offre);
@@ -189,19 +151,9 @@ public class HomeOffres extends HttpServlet {
     				obj = new JSONObject();
 
     				arrayOffre = new ArrayList<Offre>();
-    				
     				Integer id = 0;
+    				//String title = "";
     				Double price = 0.0;
-    				String typeBien = "";
-    				String typeOffre = "";
-    				String description = "";
-    				String adresse = "";
-    				Integer etage = 0;
-    				Double surfaceMaison = 0.0;
-    				Double surfaceTerrain = 0.0;
-    				String parking = "";
-    				Integer piece = 0;
-    				String photo = "";
 
     				while(rsSelect.next()) {
     				
@@ -210,48 +162,18 @@ public class HomeOffres extends HttpServlet {
 
             		arrayOffre = new ArrayList<Offre>();
             		
-            		id = rsSelect.getInt("id");
-    				System.out.println("id: " + id);
+    				id = rsSelect.getInt("id");
+//    				title = rsSelect.getString("titre");
     				price = rsSelect.getDouble("prix");
-    				System.out.println("prix: " + price);
-    				System.out.println("photo" + photo);
-    				typeBien = rsSelect.getString("typeBien");
-    				typeOffre = rsSelect.getString("typeOffre");
-    				description = rsSelect.getString("description");
-    				adresse = rsSelect.getString("addresse");
-    				etage = rsSelect.getInt("etage");
-    				surfaceMaison = rsSelect.getDouble("surfaceMaison");
-    				surfaceTerrain = rsSelect.getDouble("surfaceTerrain");
-    				parking = rsSelect.getString("presenceParking");
-    				piece = rsSelect.getInt("nombrePieces");
-    				photo = rsSelect.getString("photo");
     				
 
+//    				offre.setTitle(title);
     				offre.setPrice(price);
-    				offre.setTypeBien(typeBien);
-    				offre.setTypeOffre(typeOffre);
-    				offre.setDescription(description);
-    				offre.setAddress(adresse);
-    				offre.setEtage(etage);
-    				offre.setSurfaceMaison(surfaceMaison);
-    				offre.setSurfaceTerrain(surfaceTerrain);
-    				offre.setPresenceParking(parking);
-    				offre.setNombrePieces(piece);
-    				offre.setPhoto(photo);
     				
     				
     				obj.put("idOffre", id);
+//    				obj.put("title", title);
     				obj.put("price", price);
-    				obj.put("typeBien", typeBien);
-    				obj.put("typeOffre", typeOffre);
-    				obj.put("description", description);
-    				obj.put("adresse", adresse);
-    				obj.put("etage", etage);
-    				obj.put("surfaceMaison", surfaceMaison);
-    				obj.put("surfaceTerrain", surfaceTerrain);
-    				obj.put("parking", parking);
-    				obj.put("piece", piece);
-    				obj.put("photo", photo);
     				
 
     				arrayOffre.add(offre);
@@ -280,19 +202,9 @@ public class HomeOffres extends HttpServlet {
     				obj = new JSONObject();
 
     				arrayOffre = new ArrayList<Offre>();
-
     				Integer id = 0;
+    				//String title = "";
     				Double price = 0.0;
-    				String typeBien = "";
-    				String typeOffre = "";
-    				String description = "";
-    				String adresse = "";
-    				Integer etage = 0;
-    				Double surfaceMaison = 0.0;
-    				Double surfaceTerrain = 0.0;
-    				String parking = "";
-    				Integer piece = 0;
-    				String photo = "";
     				
     				while(rsSelect.next()) {
 
@@ -301,48 +213,18 @@ public class HomeOffres extends HttpServlet {
 
             		arrayOffre = new ArrayList<Offre>();
             		
-            		id = rsSelect.getInt("id");
-    				System.out.println("id: " + id);
+    				id = rsSelect.getInt("id");
+//    				title = rsSelect.getString("titre");
     				price = rsSelect.getDouble("prix");
-    				System.out.println("prix: " + price);
-    				System.out.println("photo" + photo);
-    				typeBien = rsSelect.getString("typeBien");
-    				typeOffre = rsSelect.getString("typeOffre");
-    				description = rsSelect.getString("description");
-    				adresse = rsSelect.getString("addresse");
-    				etage = rsSelect.getInt("etage");
-    				surfaceMaison = rsSelect.getDouble("surfaceMaison");
-    				surfaceTerrain = rsSelect.getDouble("surfaceTerrain");
-    				parking = rsSelect.getString("presenceParking");
-    				piece = rsSelect.getInt("nombrePieces");
-    				photo = rsSelect.getString("photo");
     				
 
+//    				offre.setTitle(title);
     				offre.setPrice(price);
-    				offre.setTypeBien(typeBien);
-    				offre.setTypeOffre(typeOffre);
-    				offre.setDescription(description);
-    				offre.setAddress(adresse);
-    				offre.setEtage(etage);
-    				offre.setSurfaceMaison(surfaceMaison);
-    				offre.setSurfaceTerrain(surfaceTerrain);
-    				offre.setPresenceParking(parking);
-    				offre.setNombrePieces(piece);
-    				offre.setPhoto(photo);
     				
     				
     				obj.put("idOffre", id);
+//    				obj.put("title", title);
     				obj.put("price", price);
-    				obj.put("typeBien", typeBien);
-    				obj.put("typeOffre", typeOffre);
-    				obj.put("description", description);
-    				obj.put("adresse", adresse);
-    				obj.put("etage", etage);
-    				obj.put("surfaceMaison", surfaceMaison);
-    				obj.put("surfaceTerrain", surfaceTerrain);
-    				obj.put("parking", parking);
-    				obj.put("piece", piece);
-    				obj.put("photo", photo);
     				
 
     				arrayOffre.add(offre);

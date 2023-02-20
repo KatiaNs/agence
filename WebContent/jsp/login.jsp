@@ -32,31 +32,18 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
-
-
-
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-
-
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
-
-
-
-
 <link rel="stylesheet" href="../assets/owl.carousel.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="../assets/owl.theme.default.min.css">
-
 <script src="../assets/jquery.min.js" type="text/javascript"></script>
-
 <script src="../assets/owl.carousel.js" type="text/javascript"></script> -->
     
 
@@ -174,9 +161,6 @@
     </div>
   </div>
   
-
-
-
                     
               
     </div>
