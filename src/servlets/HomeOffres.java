@@ -62,26 +62,17 @@ public class HomeOffres extends HttpServlet {
             Connection connection = dataSource.getConnection();
             Connection connection2 = dataSource.getConnection();
             
-            String email = "katia.nseir@gmail.co";
+           String email = "katia.nseir@gmail.com";
            // String email = "john.doe@gmail.com";
+           // String email = (String) session.getAttribute("email");
+            System.out.println("EMAIL: " + email);
             String role = "";
             
             java.sql.PreparedStatement stGetUserRole = connection.prepareStatement("SELECT user.idRole, role.role FROM user JOIN role ON user.idRole = role.id WHERE user.email = '" + email + "';");
-            
-            
-            //java.sql.PreparedStatement stGetOffre = connection.prepareStatement("SELECT * FROM offres");
-            
+                  
             
             ResultSet rsSelectRole = stGetUserRole.executeQuery();
 
-           // ResultSet rsSelect = stGetOffre.executeQuery();
-            
-            
-
-		//	Integer id = 0;
-			//String title = "";
-			//Double price = 0.0;
-	
 
 			json = new JSONObject();
 			list = new JSONArray();
@@ -92,7 +83,8 @@ public class HomeOffres extends HttpServlet {
             	
             	if(role.equals("client")) {
             		System.out.println("in if");
-            		java.sql.PreparedStatement stGetClient = connection2.prepareStatement("SELECT * FROM offres WHERE idEtat = 1 OR idEtat = 2");
+            		java.sql.PreparedStatement stGetClient = connection2.prepareStatement("SELECT * FROM offres JOIN etat ON "
+            				+ "offres.idEtat = etat.id WHERE offres.idEtat = 1 OR offres.idEtat = 2");
             		
             		ResultSet rsSelect = stGetClient.executeQuery();
             		
@@ -109,6 +101,7 @@ public class HomeOffres extends HttpServlet {
     				String parking = "";
     				Integer piece = 0;
     				String photo = "";
+    				String etat = "";
     				
     				
     				while(rsSelect.next()) {
@@ -133,6 +126,8 @@ public class HomeOffres extends HttpServlet {
     				parking = rsSelect.getString("presenceParking");
     				piece = rsSelect.getInt("nombrePieces");
     				photo = rsSelect.getString("photo");
+    				etat = rsSelect.getString("etat");
+    				System.out.println("ETAT:" + etat);
     				
 
     				offre.setPrice(price);
@@ -146,6 +141,7 @@ public class HomeOffres extends HttpServlet {
     				offre.setPresenceParking(parking);
     				offre.setNombrePieces(piece);
     				offre.setPhoto(photo);
+    				offre.setEtat(etat);
     				
     				
     				obj.put("idOffre", id);
@@ -160,6 +156,7 @@ public class HomeOffres extends HttpServlet {
     				obj.put("parking", parking);
     				obj.put("piece", piece);
     				obj.put("photo", photo);
+    				obj.put("etat", etat);
     				
 
     				arrayOffre.add(offre);
@@ -181,7 +178,7 @@ public class HomeOffres extends HttpServlet {
             	}
             	
             	else if(role.equals("agent") || role.equals("admin")) {
-            		java.sql.PreparedStatement stGetAgentAdmin = connection2.prepareStatement("SELECT * FROM offres");
+            		java.sql.PreparedStatement stGetAgentAdmin = connection2.prepareStatement("SELECT * FROM offres JOIN etat ON offres.idEtat = etat.id");
             		
             		ResultSet rsSelect = stGetAgentAdmin.executeQuery();
             		
@@ -202,6 +199,7 @@ public class HomeOffres extends HttpServlet {
     				String parking = "";
     				Integer piece = 0;
     				String photo = "";
+    				String etat = "";
 
     				while(rsSelect.next()) {
     				
@@ -225,6 +223,7 @@ public class HomeOffres extends HttpServlet {
     				parking = rsSelect.getString("presenceParking");
     				piece = rsSelect.getInt("nombrePieces");
     				photo = rsSelect.getString("photo");
+    				etat = rsSelect.getString("etat");
     				
 
     				offre.setPrice(price);
@@ -238,6 +237,7 @@ public class HomeOffres extends HttpServlet {
     				offre.setPresenceParking(parking);
     				offre.setNombrePieces(piece);
     				offre.setPhoto(photo);
+    				offre.setEtat(etat);
     				
     				
     				obj.put("idOffre", id);
@@ -252,6 +252,7 @@ public class HomeOffres extends HttpServlet {
     				obj.put("parking", parking);
     				obj.put("piece", piece);
     				obj.put("photo", photo);
+    				obj.put("etat", etat);
     				
 
     				arrayOffre.add(offre);
@@ -272,7 +273,8 @@ public class HomeOffres extends HttpServlet {
             	}
             	
             	else {
-            		java.sql.PreparedStatement stGetVisiteur = connection2.prepareStatement("SELECT * FROM offres WHERE idEtat = 1 OR idEtat = 2");
+            		java.sql.PreparedStatement stGetVisiteur = connection2.prepareStatement("SELECT * FROM offres JOIN etat ON "
+            				+ "offres.idEtat = etat.id WHERE offres.idEtat = 1 OR offres.idEtat = 2");
             		
             		ResultSet rsSelect = stGetVisiteur.executeQuery();
             		
@@ -293,6 +295,7 @@ public class HomeOffres extends HttpServlet {
     				String parking = "";
     				Integer piece = 0;
     				String photo = "";
+    				String etat = "";
     				
     				while(rsSelect.next()) {
 
@@ -316,6 +319,7 @@ public class HomeOffres extends HttpServlet {
     				parking = rsSelect.getString("presenceParking");
     				piece = rsSelect.getInt("nombrePieces");
     				photo = rsSelect.getString("photo");
+    				etat = rsSelect.getString("etat");
     				
 
     				offre.setPrice(price);
@@ -329,6 +333,7 @@ public class HomeOffres extends HttpServlet {
     				offre.setPresenceParking(parking);
     				offre.setNombrePieces(piece);
     				offre.setPhoto(photo);
+    				offre.setEtat(etat);
     				
     				
     				obj.put("idOffre", id);
@@ -343,6 +348,7 @@ public class HomeOffres extends HttpServlet {
     				obj.put("parking", parking);
     				obj.put("piece", piece);
     				obj.put("photo", photo);
+    				obj.put("etat", etat);
     				
 
     				arrayOffre.add(offre);
@@ -365,45 +371,6 @@ public class HomeOffres extends HttpServlet {
 			}
 			
 			
-			
-			
-			//display all offres
-			/*
-			 * while(rsSelect.next()) { offre = new Offre(); obj = new JSONObject();
-			 * 
-			 * arrayOffre = new ArrayList<Offre>();
-			 * 
-			 * id = rsSelect.getInt("id"); // title = rsSelect.getString("titre"); price =
-			 * rsSelect.getDouble("prix");
-			 * 
-			 * 
-			 * // offre.setTitle(title); offre.setPrice(price);
-			 * 
-			 * 
-			 * obj.put("idOffre", id); // obj.put("title", title); obj.put("price", price);
-			 * 
-			 * 
-			 * arrayOffre.add(offre);
-			 * 
-			 * list.add(obj);
-			 * 
-			 * }
-			 */
-			
-			///json.put("jsonArray", list);
-		
-			/*
-			 * out = response.getWriter(); out.print(json.toString());
-			 * 
-			 * out.close();
-			 * 
-			 * System.out.println(json.toString());
-			 * 
-			 * session.setAttribute("offre", offre);
-			 */
-
-			//stGetOffre.close();
-			//rsSelect.close();
 
 			connection.close();
 			connection2.close();

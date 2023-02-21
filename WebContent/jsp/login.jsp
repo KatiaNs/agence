@@ -106,27 +106,27 @@
 	}
 
 
-	var data = null;
-	function login() {
-		data = $('#formlogin').serialize();
-		$.ajax({
-			type: 'POST',
+	//var data = null;
+	//function login() {
+		//data = $('#formlogin').serialize();
+		//$.ajax({
+		//	type: 'POST',
 			/* dataType: 'JSON',  */
-			url: '/webProject/Login',
-			contentType: 'application/json; charset=utf-8',
-			data: data,
-			success: function(data) {
-				console.log(data.length);
-				console.log(data.split('').map(c => c.charCodeAt(0)).join(','));
-				var trimmedData = data.trim();
-				console.log(JSON.parse(trimmedData)); 
+		//	url: '/webProject/Login',
+		//	contentType: 'application/json; charset=utf-8',
+		//	data: data,
+		//	success: function(data) {
+			//	console.log(data.length);
+				//console.log(data.split('').map(c => c.charCodeAt(0)).join(','));
+			//	var trimmedData = data.trim();
+			//	console.log(JSON.parse(trimmedData)); 
 				//console.log(JSON.parse(data[0].status));
 				//var role = json[0].role;
-				if(data.status==200){
+		//		if(data.status==200){
 					/* window.location.replace("homeInscrit.jsp?email=" + data[0].email); */
 					//if(data[0].role == "client") {
 						//window.location.replace("homeInscrit.jsp");
-						console.log("Success in client");
+				//		console.log("Success in client");
 
 						//}
 				//	else if(data[0].role.equals("agent")) {
@@ -139,11 +139,11 @@
 					//	console.log("Success in admin");
 					//	}
 
-	           		console.log("Success");
-	           		console.log(data);	
-				}
+	       //    		console.log("Success");
+	       //    		console.log(data);	
+			//	}
 
-				else {
+				/* else {
 					var usernamePasswordError = document.getElementById("usernamePasswordError");
 					usernamePasswordError.style.visibility = "visible"; 
 					usernamePasswordError.innerHTML = "Nom d'identifiant ou mot de passe incorrect";
@@ -163,7 +163,7 @@
 			
 
 
-		}
+		} */
 
     </script>
 </head>
@@ -222,8 +222,8 @@
                 <h3 class="mb-5 text-uppercase">Se connecter</h3>
 
 
-               <!-- <form action="/webProject/Login" method="Post"> -->
-               <form id="formlogin" name="formlogin" >
+                <form action="/webProject/Login" method="Post"> 
+               <!-- <form id="formlogin" name="formlogin" > -->
   <div class="row mb-3">
      <label class="form-label" for="form3Example1m">Adresse mail</label>
     <div class="col-sm-10">
@@ -241,17 +241,17 @@
                 <div class="d-flex justify-content-end pt-3">
 
                
-                  <button type="button" onclick="login()" class="btn btn-primary">Se connecter</button>
+                  <button type="submit" class="btn btn-primary">Se connecter</button>
                 </div>
                 
                 <!-- <div class="d-flex justify-content-end pt-3"> -->
 
-                 <div class="col-6">
+                
+           </form>
+ 				<form class="col-6" id="formlogin" name="formlogin">
                   <p>Si vous ne possedez un compte: </p>
                   <a href="javascript:void()" onclick="signup()">Créer un compte</a>
-                </div>
-           </form>
-
+                </form>
               </div>
             </div>
           </div>

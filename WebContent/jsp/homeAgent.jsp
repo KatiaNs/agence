@@ -279,7 +279,6 @@ Insurance carousel
     
     
     
-    
 <style>
 	body {
 		background-color: #ffffff;
@@ -358,7 +357,7 @@ Insurance carousel
 		 type: 'GET',
         dataType: 'JSON',
         contentType: 'application/json',
-        url: '/webProject/HomeOffresAgent',
+        url: '/webProject/HomeOffres',
         
         success: function(data) {
         	
@@ -372,6 +371,9 @@ Insurance carousel
 	              /*  html += '<h4 class="insurance-caption-title">' + val.idOffre + '</h4>'; */
 	                console.log(val.idOffre);
 	                html += '<h3 class="insurance-caption-title">' + val.price + '</h3>';
+	              	 html += '<img src= "' + val.photo + '" width="150" height="150" class="image"/>';
+	               /* html += '<img src= "../images/img2.jpg" width="150" height="150" class="image"/>'; */
+	                console.log(val.photo);
 	               /*  html += '<p class="insurance-caption-description">' + val.description + '</p>'; */
 	              	html += '<a href="offreDetails.jsp?idOffre=' + val.idOffre + '">' + "En savoir plus" + '</a>';
 	                html += '</div>';
@@ -436,7 +438,7 @@ Insurance carousel
 
                   <div class="dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Jean DUPONT
+    <%=session.getAttribute("firstName") %> <%=session.getAttribute("lastName") %>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" href="#">Voir les détails de mon profil</a>
@@ -505,6 +507,7 @@ Insurance carousel
                     <div class="h-100">
                         <h1 class="display-6 text-center">Trouvez votre bien immobilier idéal</h1>
 
+	<h2> EMAIL: <%=session.getAttribute("email") %> </h2>
 
                        <form>
 
@@ -616,103 +619,6 @@ Insurance carousel
 	</div>
 
 </div>
-
-
-
-  <!-- <div class="row pb-5 mb-4">
-    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-      Card
-      <div class="card rounded shadow-sm border-0">
-        <div class="card-body p-4"><img src="https://prod-saint-gobain-fr.content.saint-gobain.io/sites/saint-gobain.fr/files/2020-06/amenagement-interieur-conseils-et-solutions-00.jpg" alt="" class="img-fluid d-block mx-auto mb-3">
-          <h5> <a href="#" class="text-dark">Maison 3 pièces 85,6 m²</a></h5>
-          <p class="small text-muted font-italic">  Référence : Ref_3945 <br>
-                                                    Type d’offre : vente <br>
-                                                    Prix du bien : 228 987 € <br>
-                                                    Commune : Ris-Orangis<br>
-                                                    Département : Essonne<br>
-                                                    Code postal : 91130 <br>
-                                                    <br>
-                                                    </p>
-
-        <div class="col-12" style="margin-left: 76px;" style="width: 100px;" >
-    <button type="submit" class="btn btn-primary">Voir détails</button>
-  </div>
-          
-
-
-
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-      Card
-      <div class="card rounded shadow-sm border-0">
-        <div class="card-body p-4"><img src="https://www.createursdinterieur.com/static/f387d62c3581d3daf3a5900555bf105f/ddced/01-apres-architecture-interieur-appartement-4-pieces.jpg" alt="" class="img-fluid d-block mx-auto mb-3">
-          <h5> <a href="#" class="text-dark">Appartement 2 pièces 35 m²</a></h5>
-          <p class="small text-muted font-italic">Référence : Ref_3946 <br>
-                                                    Type d’offre : location <br>
-                                                    Montant du loyer : 559€/mois <br>
-                                                    Commune : Bondy<br>
-                                                    Département : Seine-Saint-Denis<br>
-                                                    Code postal : 93140 <br>
-                                                    <br></p>
-          
-          <div class="col-12" style="margin-left: 76px;" style="width: 100px;" >
-    <button type="submit" class="btn btn-primary">Voir détails</button>
-  </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-      Card
-      <div class="card rounded shadow-sm border-0">
-        <div class="card-body p-4"><img src="https://www.maisonsclairlogis.fr/wp-content/uploads/2021/07/montcalm_maison-neuve_exterieur-zoom.png" alt="" class="img-fluid d-block mx-auto mb-3">
-          <h5> <a href="#" class="text-dark">Maison 5 pièces 98,5 m²</a></h5>
-          <p class="small text-muted font-italic">Référence : Ref_3947 <br>
-                                                    Type d’offre : vente <br>
-                                                    Prix du bien : 452 778 € <br>
-                                                    Commune : Ablis<br>
-                                                    Département : Yvelines<br>
-                                                    Code postal : 78660 <br>
-                                                    <br></p>
-          
-          <div class="col-12" style="margin-left: 76px;" style="width: 100px;" >
-    <button type="submit" class="btn btn-primary">Voir détails</button>
-  </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-      Card
-      <div class="card rounded shadow-sm border-0">
-        <div class="card-body p-4"><img src="https://www.maisonsclairlogis.fr/wp-content/uploads/maison-contemporaine_onyx-version-nuit.jpg" alt="" class="img-fluid d-block mx-auto mb-3">
-          <h5> <a href="#" class="text-dark">Maison 8 pièces 170 m²</a></h5>
-          <p class="small text-muted font-italic">Référence : Ref_3948 <br>
-                                                    Type d’offre : vente <br>
-                                                    Prix du bien : 662 772 € <br>
-                                                    Commune : Nice <br>
-                                                    Département : Alpes-Maritimes<br>
-                                                    Code postal : 06300 <br>
-                                                    <br></p>
-        
-         <div class="col-12" style="margin-left: 76px;" style="width: 100px;" >
-    <button type="submit" class="btn btn-primary">Voir détails</button>
-  </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  
-
-                
-            </div>
-        </div>
-    </div> -->
 
 
 <!-- Fin zone offres proposées -->

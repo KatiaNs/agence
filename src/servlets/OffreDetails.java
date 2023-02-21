@@ -69,15 +69,24 @@ public class OffreDetails extends HttpServlet {
             Connection connection = dataSource.getConnection();
             
             
-            java.sql.PreparedStatement stDisplayOffre = connection.prepareStatement("SELECT * FROM offres WHERE id = " + idOffre + ";");
+            java.sql.PreparedStatement stDisplayOffre = connection.prepareStatement("SELECT * FROM offres JOIN etat ON offres.idEtat = etat.id WHERE offres.id = " + idOffre + ";");
             
 
             ResultSet rsSelect = stDisplayOffre.executeQuery();
 
-			Integer id = 0;
-			String title = "";
+            Integer id = 0;
 			Double price = 0.0;
-	
+			String typeBien = "";
+			String typeOffre = "";
+			String description = "";
+			String adresse = "";
+			Integer etage = 0;
+			Double surfaceMaison = 0.0;
+			Double surfaceTerrain = 0.0;
+			String parking = "";
+			Integer piece = 0;
+			String photo = "";
+			String etat = "";
 
 			json = new JSONObject();
 			list = new JSONArray();
@@ -90,17 +99,52 @@ public class OffreDetails extends HttpServlet {
 				arrayOffre = new ArrayList<Offre>();
 
 				id = rsSelect.getInt("id");
-				title = rsSelect.getString("titre");
+				System.out.println("id: " + id);
 				price = rsSelect.getDouble("prix");
+				System.out.println("prix: " + price);
+				System.out.println("photo" + photo);
+				typeBien = rsSelect.getString("typeBien");
+				typeOffre = rsSelect.getString("typeOffre");
+				description = rsSelect.getString("description");
+				adresse = rsSelect.getString("addresse");
+				etage = rsSelect.getInt("etage");
+				surfaceMaison = rsSelect.getDouble("surfaceMaison");
+				surfaceTerrain = rsSelect.getDouble("surfaceTerrain");
+				parking = rsSelect.getString("presenceParking");
+				piece = rsSelect.getInt("nombrePieces");
+				photo = rsSelect.getString("photo");
+				etat = rsSelect.getString("etat");
+				System.out.println("ETAT:" + etat);
 				
 
-				offre.setTitle(title);
 				offre.setPrice(price);
+				offre.setTypeBien(typeBien);
+				offre.setTypeOffre(typeOffre);
+				offre.setDescription(description);
+				offre.setAddress(adresse);
+				offre.setEtage(etage);
+				offre.setSurfaceMaison(surfaceMaison);
+				offre.setSurfaceTerrain(surfaceTerrain);
+				offre.setPresenceParking(parking);
+				offre.setNombrePieces(piece);
+				offre.setPhoto(photo);
+				offre.setEtat(etat);
 				
 				
 				obj.put("idOffre", id);
-				obj.put("title", title);
 				obj.put("price", price);
+				obj.put("typeBien", typeBien);
+				obj.put("typeOffre", typeOffre);
+				obj.put("description", description);
+				obj.put("adresse", adresse);
+				obj.put("etage", etage);
+				obj.put("surfaceMaison", surfaceMaison);
+				obj.put("surfaceTerrain", surfaceTerrain);
+				obj.put("parking", parking);
+				obj.put("piece", piece);
+				obj.put("photo", photo);
+				obj.put("etat", etat);
+				
 				
 
 				arrayOffre.add(offre);

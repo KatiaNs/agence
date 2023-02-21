@@ -123,6 +123,9 @@ public class Login extends HttpServlet {
 						user.setStatus(status);
 
 						session.setAttribute("email", email);
+						session.setAttribute("firstName", firstName);
+						session.setAttribute("lastName", lastName);
+						session.setAttribute("role", role);
 
 						obj.put("status", status);
 
@@ -142,6 +145,7 @@ public class Login extends HttpServlet {
 
 						json.put("jsonLogin", list);
 
+						response.sendRedirect("jsp/homeInscrit.jsp");
 						out.println(list);
 						out.flush();
 
@@ -153,7 +157,7 @@ public class Login extends HttpServlet {
 						System.out.println("User is a client");
 						System.out.println(st.toString());
 
-						//response.sendRedirect("jsp/homeInscrit.jsp");
+					
 						//request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
 					}
 
@@ -183,6 +187,9 @@ public class Login extends HttpServlet {
 						user.setStatus(status);
 
 						session.setAttribute("email", email);
+						session.setAttribute("firstName", firstName);
+						session.setAttribute("lastName", lastName);
+						session.setAttribute("role", role);
 
 						obj.put("status", status);
 
@@ -201,6 +208,8 @@ public class Login extends HttpServlet {
 						list.add(obj);
 
 						json.put("jsonLogin", list);
+						
+						response.sendRedirect("jsp/homeAgent.jsp");
 
 						out.println(list.toJSONString());
 						out.flush();
@@ -212,7 +221,7 @@ public class Login extends HttpServlet {
 						System.out.println(st.toString());
 
 
-						//response.sendRedirect("jsp/homeAgent.jsp");	
+						
 					}
 
 					else if(role.equals("admin")) {
@@ -241,6 +250,9 @@ public class Login extends HttpServlet {
 						user.setStatus(status);
 
 						session.setAttribute("email", email);
+						session.setAttribute("firstName", firstName);
+						session.setAttribute("lastName", lastName);
+						session.setAttribute("role", role);
 
 						obj.put("status", status);
 
@@ -258,6 +270,8 @@ public class Login extends HttpServlet {
 						list.add(obj);
 
 						json.put("jsonLogin", list);
+						
+						response.sendRedirect("jsp/homeAdmin.jsp");	
 
 						out.println(list.toJSONString());
 						out.flush();
@@ -269,7 +283,7 @@ public class Login extends HttpServlet {
 						System.out.println(st.toString());
 
 
-						//	response.sendRedirect("jsp/homeAgent.jsp");	
+						
 					}
 
 				}
@@ -294,6 +308,8 @@ public class Login extends HttpServlet {
 				//arrayUser.add(user);
 
 				list.add(obj);
+				
+				response.sendRedirect("jsp/login.jsp");
 
 				json.put("jsonLogin", list);
 
@@ -302,6 +318,7 @@ public class Login extends HttpServlet {
 				
 
 				System.out.println("error, no user found");
+				
 
 			}
 

@@ -16,7 +16,7 @@ public class Offre implements Serializable {
 	
 	// email du proprio
 	private String mail_proprio;
-	private Integer etat;
+	private String etat;
 	private String typeBien;
 	private String typeOffre;
 	private String description;
@@ -28,6 +28,7 @@ public class Offre implements Serializable {
 	private Integer nombrePieces;
 	private String libelle;
 	private String photo;
+
 	
 	public String getPhoto() {
 		return photo;
@@ -82,11 +83,11 @@ public class Offre implements Serializable {
 		this.mail_proprio = mail_proprio;
 	}
 
-	public Integer getEtat() {
+	public String getEtat() {
 		return etat;
 	}
 
-	public void setEtat(Integer etat) {
+	public void setEtat(String etat) {
 		this.etat = etat;
 	}
 
