@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!-- <!DOCTYPE html>
 <html>
 <head>
@@ -11,20 +11,19 @@
 	<p>email</p> <input type="text" id="email" name="email">
 	<p>password</p> <input type="text" id="password" name="password">
 	
-	<input type="submit" value="AccËs ServletPrincipal">
+	<input type="submit" value="Acc√®s ServletPrincipal">
 </form>
 </body>
 </html> -->
 
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <title>YourHome - Agence immobiliËre</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  	<meta charset="utf-8">
+    <title>YourHome - Agence immobili√®re</title>
+    <!-- <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta content="" name="description"> -->
     
 <!--     <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -50,7 +49,7 @@
     <!-- Favicon -->
     <!-- <link href="img/favicon.ico" rel="icon"> -->
 
-    <!-- Google Web Fonts -->
+   <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700&display=swap"
@@ -58,18 +57,115 @@
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-   <link href="../lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"> 
+    <link href="../lib/animate/animate.min.css" rel="stylesheet">
+    <!-- <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"> -->
+    
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+
+
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+
+
+	<link rel="stylesheet" href="../assets/owl.carousel.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../assets/owl.theme.default.min.css">
+
+	<script src="../assets/jquery.min.js" type="text/javascript"></script>
+
+	<script src="../assets/owl.carousel.js" type="text/javascript"></script>
 
     <!-- Customized Bootstrap Stylesheet -->
     
-   <link href="../css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
+    
+    
+    <script>
+
+    function signup() {
+		document.getElementById("formlogin").action = "registerVisiteur.jsp";
+		document.getElementById("formlogin").method = "post";
+		document.getElementById("formlogin").submit();
+	}
+
+
+	var data = null;
+	function login() {
+		data = $('#formlogin').serialize();
+		$.ajax({
+			type: 'POST',
+			/* dataType: 'JSON',  */
+			url: '/webProject/Login',
+			contentType: 'application/json; charset=utf-8',
+			data: data,
+			success: function(data) {
+				console.log(data.length);
+				console.log(data.split('').map(c => c.charCodeAt(0)).join(','));
+				var trimmedData = data.trim();
+				console.log(JSON.parse(trimmedData)); 
+				//console.log(JSON.parse(data[0].status));
+				//var role = json[0].role;
+				if(data.status==200){
+					/* window.location.replace("homeInscrit.jsp?email=" + data[0].email); */
+					//if(data[0].role == "client") {
+						//window.location.replace("homeInscrit.jsp");
+						console.log("Success in client");
+
+						//}
+				//	else if(data[0].role.equals("agent")) {
+				//		window.location.replace("homeAgent.jsp");
+					//	console.log("Success in agent");
+					//	}
+					
+					//else if(data[0].role.equals("admin")) {
+					//	window.location.replace("homeAgent.jsp");
+					//	console.log("Success in admin");
+					//	}
+
+	           		console.log("Success");
+	           		console.log(data);	
+				}
+
+				else {
+					var usernamePasswordError = document.getElementById("usernamePasswordError");
+					usernamePasswordError.style.visibility = "visible"; 
+					usernamePasswordError.innerHTML = "Nom d'identifiant ou mot de passe incorrect";
+					console.log("Fail");
+					
+					console.log(data);
+					}
+
+				},
+				error:function(request, status, error){
+					
+					console.log("error: " + error);
+					}
+			});
+
+		console.log(data);
+			
+
+
+		}
+
+    </script>
 </head>
 
 <body>
@@ -102,11 +198,6 @@
                 </div>
                   
 
-
-                </div>
-                
-            </div>
-        </div>
     </nav>
     <!-- FIN BARRE DE NAVIGATION -->
 
@@ -131,11 +222,12 @@
                 <h3 class="mb-5 text-uppercase">Se connecter</h3>
 
 
-               <form action="/webProject/Login" method="Post">
+               <!-- <form action="/webProject/Login" method="Post"> -->
+               <form id="formlogin" name="formlogin" >
   <div class="row mb-3">
      <label class="form-label" for="form3Example1m">Adresse mail</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" id="email" name="email">
+      <input type="text" class="form-control" id="email" name="email">
     </div>
   </div>
   <div class="row mb-3">
@@ -144,12 +236,19 @@
       <input type="password" class="form-control" id="password" name="password">
     </div>
   </div>
-                
+   <span id="usernamePasswordError" style="visibility: hidden; color: red; font-size:16px;"></span>
+                 
                 <div class="d-flex justify-content-end pt-3">
 
-                  
-                  
-                  <button type="submit" class="btn btn-primary">Se connecter</button>
+               
+                  <button type="button" onclick="login()" class="btn btn-primary">Se connecter</button>
+                </div>
+                
+                <!-- <div class="d-flex justify-content-end pt-3"> -->
+
+                 <div class="col-6">
+                  <p>Si vous ne possedez un compte: </p>
+                  <a href="javascript:void()" onclick="signup()">Cr√©er un compte</a>
                 </div>
            </form>
 
@@ -179,13 +278,13 @@
                 <div class="col-md-6">
                     <h1 class="text-primary mb-4"><img class="img-fluid me-2" src="https://cdn-icons-png.flaticon.com/512/720/720119.png" alt=""
                             style="width: 55px;">YourHome</h1>
-                    <p>YourHome, la meilleure agence immobliËre d'Ile-de-France : 
+                    <p>YourHome, la meilleure agence immobli√®re d'Ile-de-France : 
                         <br>
                         <ul>
-                        <li>273 823 projets rÈalisÈs</li>
+                        <li>273 823 projets r√©alis√©s</li>
                         <li>98% de clients satisfaits</li>
                         <li>32 agences en cours d'ouverture</li>
-                        <li> 26 agents ‡ votre service</li>
+                        <li> 26 agents √† votre service</li>
                     </ul>
 
                     </p>
@@ -199,7 +298,7 @@
                 </div>
                 
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="mb-4">Nos rÈseaux sociaux</h5>
+                    <h5 class="mb-4">Nos r√©seaux sociaux</h5>
                     <div class="d-flex">
                         <a class="btn btn-square rounded-circle me-1" href="https://twitter.com/" target="blank"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square rounded-circle me-1" href="https://www.facebook.com/" target="blank"><i class="fab fa-facebook-f"></i></a>
@@ -220,15 +319,15 @@
 
 
     <!-- JavaScript Libraries -->
-  	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script> -->
     <script src="../lib/wow/wow.min.js"></script>
     <script src="../lib/easing/easing.min.js"></script>
     <script src="../lib/waypoints/waypoints.min.js"></script>
-    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <!-- <script src="lib/owlcarousel/owl.carousel.min.js"></script> -->
     <script src="../lib/counterup/counterup.min.js"></script>
 
-    
+    <!-- Template Javascript -->
     <script src="../js/main.js"></script>
  
  </body>
