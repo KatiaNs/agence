@@ -407,7 +407,7 @@ Insurance carousel
 
 
 		function getAllOffres() {
-			document.getElementById("carouselOffres").action = "allOffres.jsp";
+			document.getElementById("carouselOffres").action = "allOffresAgent.jsp";
 			document.getElementById("carouselOffres").method = "post";
 			document.getElementById("carouselOffres").submit();
 		}

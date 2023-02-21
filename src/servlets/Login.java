@@ -120,7 +120,7 @@ public class Login extends HttpServlet {
 						user.setAddress(address);
 						user.setPhone(phone);
 						user.setPassword(password);
-						user.setStatus(status);
+						//user.setStatus(status);
 
 						session.setAttribute("email", email);
 						session.setAttribute("firstName", firstName);
@@ -184,7 +184,7 @@ public class Login extends HttpServlet {
 						user.setAddress(address);
 						user.setPhone(phone);
 						user.setPassword(password);
-						user.setStatus(status);
+						//user.setStatus(status);
 
 						session.setAttribute("email", email);
 						session.setAttribute("firstName", firstName);
@@ -247,7 +247,7 @@ public class Login extends HttpServlet {
 						user.setAddress(address);
 						user.setPhone(phone);
 						user.setPassword(password);
-						user.setStatus(status);
+						//user.setStatus(status);
 
 						session.setAttribute("email", email);
 						session.setAttribute("firstName", firstName);

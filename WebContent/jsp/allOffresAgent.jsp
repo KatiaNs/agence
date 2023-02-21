@@ -168,7 +168,7 @@ button:focus, button:active {
 	                html += '<p>';
 	              	 
 	                console.log(val.photo);
-	              	html += '<a href="offreDetails.jsp?idOffre=' + val.idOffre + '">' + "En savoir plus" + '</a>';
+	            	html += '<a href="modifierOffre.jsp?idOffre=' + val.idOffre + '">' + "Modifier l'offre" + '</a>';
 
 	                html += '</div>';
 	                html += '</div>';

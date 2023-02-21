@@ -2,21 +2,28 @@ package beans;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user")
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable{
 	
 	
 	private static final long serialVersionUID = 1L;
+	@Id
 	private Integer id;
+	
 	private String email;
 	private String firstName;
 	private String lastName;
-	private String phone;
+	private String phoneNumber;
 	private String address;
 	private String password;
 	private Integer idRole;
-	private Integer status;
-	
-	
 	
 
 	public Integer getId() {
@@ -42,10 +49,10 @@ public class User implements Serializable{
 		this.lastName = lastName;
 	}
 	public String getPhone() {
-		return phone;
+		return phoneNumber;
 	}
 	public void setPhone(String phone) {
-		this.phone = phone;
+		this.phoneNumber = phone;
 	}
 	public String getAddress() {
 		return address;
@@ -61,13 +68,6 @@ public class User implements Serializable{
 	}
 	public Integer getIdRole() {
 		return idRole;
-	}
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 
 	

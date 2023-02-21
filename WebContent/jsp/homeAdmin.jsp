@@ -362,23 +362,34 @@ Insurance carousel
         success: function(data) {
         	
        		 var html = "";
-				$.each (data.jsonArray, function(key, val) {
-					html += '<div class="insurance-container">';
-					 /*	html += '<img class="img-responsive img-insurance" src="' + val.image + '" alt="Picture 1">';  */
-					 /* html += '<img class="img-responsive img-insurance" src="https://picsum.photos/200" alt="Picture 1">'; */
-	                html += '<div class="insurance-caption">'
-	               /*  html += '<h4 class="insurance-caption-title">' + val.title + '</h4>'; */
-	              /*  html += '<h4 class="insurance-caption-title">' + val.idOffre + '</h4>'; */
-	                console.log(val.idOffre);
-	                html += '<h3 class="insurance-caption-title">' + val.price + '</h3>';
-	              	 html += '<img src= "' + val.photo + '" width="150" height="150" class="image"/>';
-	               /* html += '<img src= "../images/img2.jpg" width="150" height="150" class="image"/>'; */
-	                console.log(val.photo);
-	               /*  html += '<p class="insurance-caption-description">' + val.description + '</p>'; */
-	              	html += '<a href="offreDetails.jsp?idOffre=' + val.idOffre + '">' + "En savoir plus" + '</a>';
-	                html += '</div>';
-	                html += '</div>';
-				});
+       		$.each (data.jsonArray, function(key, val) {
+				html += '<div class="insurance-container card rounded shadow-sm border-0">';
+                html += '<div class="insurance-caption card-body p-3">'
+	               
+                html += '<img src= "' + val.photo + '" width="150" height="150" class="image"/>';
+                html += '<h5 class="insurance-caption-title" style="margin-top: 10px;">' + val.typeBien + " " + val.piece + " pièces " + val.surfaceMaison + " m²" + '</h5>';
+                html += '<p class="small text-muted">';
+                
+                html += 'Référence: Ref_' + val.idOffre + '<br>';
+                html += 'Type d’offre: ' + val.typeOffre + '<br>';
+                html += 'Etat: ' + val.etat + '<br>';
+                html += 'Prix du bien: ' +val.price + '€ ' + '<br>';
+                html += 'Adresse: ' + val.adresse + '<br>';
+                
+                html += '<p>';
+              	 
+               /* html += '<img src= "../images/img2.jpg" width="150" height="150" class="image"/>'; */
+                console.log(val.photo);
+               /*  html += '<p class="insurance-caption-description">' + val.description + '</p>'; */
+              	html += '<a href="modifierOffre.jsp?idOffre=' + val.idOffre + '">' + "Modifier l'offre" + '</a>';
+
+
+
+              	
+                html += '</div>';
+                html += '</div>';
+			});
+			
 				
 			$("#offre-carousel").html(html);
 			console.log("Success");
@@ -396,7 +407,7 @@ Insurance carousel
 
 
 		function getAllOffres() {
-			document.getElementById("carouselOffres").action = "allOffres.jsp";
+			document.getElementById("carouselOffres").action = "allOffresAdmin.jsp";
 			document.getElementById("carouselOffres").method = "post";
 			document.getElementById("carouselOffres").submit();
 		}
@@ -434,7 +445,7 @@ Insurance carousel
         </button>
        <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-4 py-lg-0">
-            <div class="nav-item nav-link"><button type="button" onclick="creerAgent()" class="btn btn-default">Créer Agent</button></div>
+ 			<div class="nav-item nav-link"><button type="button" onclick="creerAgent()" class="btn btn-default">Créer Agent</button></div>
               <div class="nav-item nav-link"><button type="button" class="btn btn-default">Nouvelle offre</button></div>
                 <div class="nav-item nav-link"><button type="button" class="btn btn-default">Acheter</button></div>
                 <div class="nav-item nav-link"><button type="button" class="btn btn-default">Louer</button></div>
@@ -501,90 +512,93 @@ Insurance carousel
     <!-- Header End -->
 
 
-    <!-- Début zone recherche pa critères -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <img class="img-fluid" src="https://cdn-user-icons.flaticon.com/89357/89357021/1672967740860.svg?token=exp=1672968673~hmac=73d5192465b6dc92a2d1a96c0950da1e" alt="">
-                </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="h-100">
-                        <h1 class="display-6 text-center">Trouvez votre bien immobilier idéal</h1>
+    <h2>
+		EMAIL:
+		<%=session.getAttribute("email") %>
+	</h2>
 
-	<h2> EMAIL: <%=session.getAttribute("email") %> </h2>
-
-                       <form>
-
-
-    <div class ="recherche_offres">
-                            <p> Recherche des offres par : </p>
-     <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Référence de l'offre</label>
-</div>
-</div>
-    <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Critères de recherche</label>
-</div>
-    
-
-</div>
-</form>
-<br>
-
-<div class="row">
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Département" aria-label="Département">
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Ville" aria-label="Ville">
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Code postal" aria-label="Code postal">
-  </div>
-</div>
-<br>
-
-<div class="row">
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Budget min" aria-label="Budget min">
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Budget max" aria-label="Budget max">
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Nb. de pièces" aria-label="Nb. de pièces">
-  </div>
-</div>
-
-<br>
-<form class="row g-3">
-  
-  
-  <div class="col-md-4">
-    <label for="inputState" class="form-label">Type de bien</label>
-    <select id="inputState" class="form-select">
-      <option selected>Maison</option>
-      <option>Appartement</option>
-    </select>
-  </div>
-  
-  <div class="col-12" style="margin-left: 250px;" style="width: 100px;" >
-    <button type="submit" class="btn btn-primary">Rechercher</button>
-  </div>
-</form>
+	<!-- Début zone recherche pa critères -->
+	<div class="container-xxl py-5">
+		<div class="container">
+			<div class="row g-5 align-items-center" style="margin-bottom: 45px;">
+				<div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+					<img class="img-fluid"
+						src="https://cdn-user-icons.flaticon.com/89357/89357021/1672967740860.svg?token=exp=1672968673~hmac=73d5192465b6dc92a2d1a96c0950da1e"
+						alt="">
+				</div>
+				<div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+					<div class="h-100">
+						<h1 class="display-6 text-center">Trouvez votre bien
+							immobilier idéal</h1>
 
 
 
+						<form>
+							<div>
+								<p>Recherche des offres par :</p>
+								<div id="myRadioGroup">
+									<div>
+										<label><input type="radio" name="radioBtn" value="ref"
+											checked> Référence de l'offre</label> <br> <label>
+											<input type="radio" name="radioBtn" value="crit">
+											Critères de recherche
+										</label>
+									</div>
+								</div>
+							</div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-   
-    <!-- Fin zone recherche pa critères -->
+							<div class="desc" id="critDiv" style="display: none;">
+								<div class="col">
+									<input type="text" class="form-control" placeholder="Adresse"
+										aria-label="Adresse">
+								</div>
+								<br>
+								<div class="col">
+									<input type="text" class="form-control"
+										placeholder="Budget min" aria-label="Budget min">
+								</div>
+								<br>
+								<div class="col">
+									<input type="text" class="form-control"
+										placeholder="Budget max" aria-label="Budget max">
+								</div>
+								<br>
+								<div class="col">
+									<input type="text" class="form-control"
+										placeholder="Nb. de pièces" aria-label="Nb. de pièces">
+								</div>
+								<br>
+								<div class="col-md-4">
+									<label for="inputState" class="form-label">Type de bien</label>
+									<select id="inputState" class="form-select">
+										<option selected>Maison</option>
+										<option>Appartement</option>
+									</select>
+								</div>
+								<br>
+							</div>
+							<div class="row desc" id="refDiv" style="display: block;">
+								<div class="col">
+									<input style="width: 200px;" type="text" class="form-control"
+										placeholder="Référence" aria-label="Référence">
+								</div>
+							</div>
+
+							<div class="col-12" style="margin-left: 250px;"
+								style="width: 100px;">
+								<button type="submit" class="btn btn-primary">Rechercher</button>
+							</div>
+						</form>
+
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Fin zone recherche pa critères -->
 
 
 
@@ -721,6 +735,16 @@ Insurance carousel
 				},
 			}
 		})
+	});
+
+
+	$(document).ready(function() {
+		$("input[name$='radioBtn']").click(function() {
+			var test = $(this).val();
+
+			$("div.desc").hide();
+			$("#" + test + "Div").show();
+		});
 	});
 	
 	

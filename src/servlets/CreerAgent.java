@@ -83,15 +83,16 @@ public class CreerAgent extends HttpServlet {
 	            	stInsertUser.setString(6, password);
 	            	stInsertUser.setInt(7, idRole);
 	            	
-	            	session.setAttribute("email", email);
-	            	session.setAttribute("firstName", firstName);
-	            	session.setAttribute("lastName", lastName);
-	            	session.setAttribute("role", role);
+				/*
+				 * session.setAttribute("email", email); session.setAttribute("firstName",
+				 * firstName); session.setAttribute("lastName", lastName);
+				 * session.setAttribute("role", role);
+				 */
 	            	
 	            	int rsInsert = stInsertUser.executeUpdate();
 	            	System.out.println("Registered: " + stInsertUser.toString());
 	            	
-	            	response.sendRedirect("jsp/homeInscrit.jsp");
+	            	response.sendRedirect("jsp/homeAgent.jsp");
 	            	
 	            }
 	            // if user exists

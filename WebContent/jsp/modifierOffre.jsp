@@ -187,12 +187,12 @@
 		                
 	               	html += '<img src= "' + val.photo + '" width="150" height="150" class="image"/>';
 	               
-	                html += 'Nombre piece: <input type="text" value="' + val.piece + '">';
-	                html += 'Surface maison: <input type="text" value="' + val.surfaceMaison + '">';
-	                html += 'Surface terrain: <input type="text" value="' + val.surfaceTerrain + '">';
+	                html += 'Nombre piece: <input type="text" name="nombrePieces" value="' + val.piece + '">';
+	                html += 'Surface maison: <input type="text" name="surfaceMaison" value="' + val.surfaceMaison + '">';
+	                html += 'Surface terrain: <input type="text" name="surfaceTerrain" value="' + val.surfaceTerrain + '">';
 	             
 	                
-	                html += '<select id="inputState" id="chooseOffre" name="offre">'
+	                html += '<select id="inputState" id="chooseOffre" name="typeOffre">'
 	               	html += '<option value="vente" ';
 	               	console.log("before if: " + val.typeOffre);
 	               	
@@ -215,28 +215,28 @@
 	               
 	                html += '<select id="inputState" id="chooseEtat" name="etat">'
 	               	html += '<option value="EN_COURS" ';
-	               	if(val.typeOffre == "EN_COURS") {
+	               	if(val.etat == "EN_COURS") {
 	               		console.log("after if1: " + val.etat);
 		               	html+= 'selected="selected"';
 		               	}
 	               	html += '>EN_COURS </option>';
 
 	               	html += '<option value="RESERVE" ';
-	               	if(val.typeOffre == "RESERVE") {
+	               	if(val.etat == "RESERVE") {
 	               		console.log("after if2: " + val.etat);
 		               	html+= 'selected="selected"';
 		               	}
 	               	html += '>RESERVE </option>';
 
 	               	html += '<option value="VENDU" ';
-	               	if(val.typeOffre == "VENDU") {
+	               	if(val.etat == "VENDU") {
 	               		console.log("after if3: " + val.etat);
 		               	html+= 'selected="selected"';
 		               	}
 	               	html += '>VENDU </option>';
 
 	               	html += '<option value="SUPPRIME" ';
-	               	if(val.typeOffre == "SUPPRIME") {
+	               	if(val.etat == "SUPPRIME") {
 	               		console.log("after if4: " + val.etat);
 		               	html+= 'selected="selected"';
 		               	}
@@ -245,8 +245,8 @@
 	              	html += '</select>';
 
 	              	
-	                html += 'Prix: <input type="text" value="' + val.price + '">';
-	                html += 'Adresse: <input type="text" value="' + val.adresse + '">';
+	                html += 'Prix: <input type="text" name="prix" value="' + val.price + '">';
+	                html += 'Adresse: <input type="text" name="adresse" value="' + val.adresse + '">';
 	                html+= '<button type="submit">Save</button>';
 	                
 	                        /*   html += '<p class="small text-muted">'; */
@@ -346,17 +346,17 @@
     </nav>
     <!-- FIN BARRE DE NAVIGATION -->
 
-<input type="text" value="<%=request.getParameter("idOffre")%>" name="idOffre">
-<input type="text" value="<%=session.getAttribute("email")%>" name="email">
+<input type="hidden" value="<%=request.getParameter("idOffre")%>" name="idOffre">
+<input type="hidden" value="<%=session.getAttribute("email")%>" name="email">
 <%
 String varIdOffre = request.getParameter("idOffre");
 session.setAttribute("idOffre", varIdOffre); 
 %>
 
-    <h2>
+   <%--  <h2>
 		EMAIL:
 		<%=session.getAttribute("email") %>
-	</h2>
+	</h2> --%>
 
 	
 
@@ -382,7 +382,7 @@ session.setAttribute("idOffre", varIdOffre);
   </div>
   </form>
 
-<form action="/webProject/Test" method="Post"> 
+<form action="/webProject/ModifierOffre" method="Post"> 
 <div class="card-body offre-card" id="offre-card">
 
        
