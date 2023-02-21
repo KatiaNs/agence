@@ -147,8 +147,8 @@ $.ajax({
        
    	success: function(data) {     	
     	var html = "";
-    	$.each (data.jsonArray, function(key, val) {
-			html += '<div class="insurance-container card rounded shadow-sm border-0">';
+    	$.each (data.jsonArrayDetails, function(key, val) {
+			/* html += '<div class="insurance-container card rounded shadow-sm border-0">';
             html += '<div class="insurance-caption card-body p-3">'
                
             html += '<img src= "' + val.photo + '" width="150" height="150" class="image"/>';
@@ -161,18 +161,98 @@ $.ajax({
             html += 'Prix du bien: ' +val.price + '€ ' + '<br>';
             html += 'Adresse: ' + val.adresse + '<br>';
             
-            html += '<p>';
+            html += '<p>'; */
           	 
            /* html += '<img src= "../images/img2.jpg" width="150" height="150" class="image"/>'; */
-            console.log(val.photo);
+          /*   console.log(val.photo); */
            /*  html += '<p class="insurance-caption-description">' + val.description + '</p>'; */
-          	html += '<a href="offreDetails.jsp?idOffre=' + val.idOffre + '">' + "En savoir plus" + '</a>';
+          /* 	html += '<a href="offreDetails.jsp?idOffre=' + val.idOffre + '">' + "En savoir plus" + '</a>'; */
 
 
 
           	
-            html += '</div>';
-            html += '</div>';
+           /*  html += '</div>';
+            html += '</div>'; */
+
+    		html += '<div class="container-fluid hero-header bg-light py-5 mb-5">';
+			html += '<div class="container py-13">';
+			html += '<div class="row g-5 align-items-center">';
+			html += '<div class="container py-5 h-100">';
+			html += '<div class="row d-flex justify-content-center align-items-center h-100">';
+			html += '<div class="col">';
+			html += '<div class="card card-registration my-4">';
+			html += '<div class="row g-0">';
+
+			html += '<div class="col-xl-6 d-none d-xl-block">';
+			html += '<img src= "'
+					+ val.photo
+					+ '" class="img-fluid" style="border-top-left-radius: .25rem;border-bottom-left-radius: .25rem;height: 100%;"/>';
+			html += '</div>';
+
+			html += '<div class="col-xl-6">';
+			html += '<div class="card-body p-md-5 text-black">';
+
+			html += '<h3>' + val.typeBien + " "
+					+ val.piece + " pièces "
+					+ val.surfaceMaison + " m²"
+					+ '</h3>';
+
+			html += '<p>';
+			html += '<big>' + val.adresse
+					+ '</big>';
+			html += '</p>';
+
+			html += '<big>';
+			html += '<h4><strong>' + val.price
+					+ '€ ' + '</strong></h4>';
+
+			html += '<button type="submit" class="btn btn-primary">Revenir à la page précédente</button><br><br>';
+			html += '</big>';
+
+			html += '</div>';
+			html += '<big></big>';
+			html += '</div>';
+			html += '<big></big>';
+			html += '</div>';
+			html += '<big></big>';
+			html += '</div>';
+			html += '<big></big>';
+			html += '</div>';
+			html += '<big></big>';
+			html += '</div>';
+			html += '<big></big>';
+			html += '</div>';
+
+			html += '<big>';
+			html += '<div>';
+			html += '<h3>' + val.etat + ": "
+					+ val.typeBien + " "
+					+ val.piece + " pièces "
+					+ val.surfaceMaison + " m²"
+					+ '</h3><br>';
+			html += '<h2><strong>Descriptif</strong></h2><br>';
+			html += '<p>' + 'Surface: '
+					+ val.surfaceMaison + " m²"
+					+ '</p>';
+			html += '<p>' + 'Jardin: '
+					+ val.surfaceTerrain + " m²"
+					+ '</p>';
+			html += '<p>' + 'Parking: '
+					+ val.parking + '</p>';
+			html += '<p>' + 'Pièces: ' + val.piece
+					+ '</p>';
+			html += '<p>' + 'Etages: ' + val.etage
+					+ '</p>';
+			html += '<p>' + val.description
+					+ '</p>';
+			html += '</div>';
+			html += '</big>';
+
+			html += '</div>';
+			html += '<big></big>';
+			html += '</div>';
+			html += '<big></big>';
+			html += '</div>';
 		});
 				
 		//$("#tableDetails").html(html);
@@ -285,28 +365,79 @@ session.setAttribute("idOffre", varIdOffre);
 
 
 
+<!-- Footer Start -->
+
+	<div class="container py-5">
+		<div class="row g-5">
+			<div class="col-md-6">
+				<h1 class="text-primary mb-4">
+					<img class="img-fluid me-2"
+						src="https://cdn-icons-png.flaticon.com/512/720/720119.png" alt=""
+						style="width: 55px;">YourHome
+				</h1>
+				YourHome, la meilleure agence immoblière d'Ile-de-France : <br>
+				<div><ul>
+					<li>273 823 projets réalisés</li>
+					<li>98% de clients satisfaits</li>
+					<li>32 agences en cours d'ouverture</li>
+					<li>26 agents à votre service</li>
+				</ul></div>
+			</div>
+
+			<div class="col-lg-3 col-md-6">
+				<h5 class="mb-4">Contactez-nous</h5>
+				<p>
+					<i class="fa fa-map-marker-alt me-3"></i>72 Rue du Moutier,
+					Aubervilliers
+				</p>
+				<p>
+					<i class="fa fa-phone-alt me-3"></i>+33 9 43 26 77 33
+				</p>
+				<p>
+					<i class="fa fa-envelope me-3"></i>auber@yourhome.com
+				</p>
+			</div>
+
+			<div class="col-lg-3 col-md-6">
+				<h5 class="mb-4">Nos réseaux sociaux</h5>
+				<div class="d-flex">
+					<a class="btn btn-square rounded-circle me-1"
+						href="https://twitter.com/" target="blank"><i
+						class="fab fa-twitter"></i></a> <a
+						class="btn btn-square rounded-circle me-1"
+						href="https://www.facebook.com/" target="blank"><i
+						class="fab fa-facebook-f"></i></a> <a
+						class="btn btn-square rounded-circle me-1"
+						href="https://www.youtube.com/" target="blank"><i
+						class="fab fa-youtube"></i></a> <a
+						class="btn btn-square rounded-circle me-1"
+						href="https://www.linkedin.com/" target="blank"><i
+						class="fab fa-linkedin-in"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer End -->
+
+	<!-- Back to Top -->
+	<a href="#"
+		class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
+		class="bi bi-arrow-up"></i></a>
 
 
+	<!-- JavaScript Libraries -->
+	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script> -->
+	<script src="../lib/wow/wow.min.js"></script>
+	<script src="../lib/easing/easing.min.js"></script>
+	<script src="../lib/waypoints/waypoints.min.js"></script>
+	<!-- <script src="lib/owlcarousel/owl.carousel.min.js"></script> -->
+	<script src="../lib/counterup/counterup.min.js"></script>
 
+	<!-- Template Javascript -->
+	<script src="../js/main.js"></script>
 
-
-
- <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
-            class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script> -->
-    <script src="../lib/wow/wow.min.js"></script>
-    <script src="../lib/easing/easing.min.js"></script>
-    <script src="../lib/waypoints/waypoints.min.js"></script>
-    <!-- <script src="lib/owlcarousel/owl.carousel.min.js"></script> -->
-    <script src="../lib/counterup/counterup.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="../js/main.js"></script>
 
 
 

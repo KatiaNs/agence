@@ -62,9 +62,10 @@ public class HomeOffres extends HttpServlet {
             Connection connection = dataSource.getConnection();
             Connection connection2 = dataSource.getConnection();
             
-           String email = "katia.nseir@gmail.com";
+          /// String email = "katia.nseir@gmail.com";
            // String email = "john.doe@gmail.com";
-           // String email = (String) session.getAttribute("email");
+           // String email = "agent.agent@gmail.com";
+            String email = (String) session.getAttribute("email");
             System.out.println("EMAIL: " + email);
             String role = "";
             

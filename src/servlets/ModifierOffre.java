@@ -21,12 +21,13 @@ import org.json.simple.JSONObject;
 
 import beans.Offre;
 
-@WebServlet("/OffreDetails")
-public class OffreDetails extends HttpServlet {
+
+@WebServlet("/ModifierOffre")
+public class ModifierOffre extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public OffreDetails() {
+    public ModifierOffre() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,18 +35,10 @@ public class OffreDetails extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGetVersion2(request, response);
-		
 	}
 
 	
-	/*
-	 * protected void doPost(HttpServletRequest request, HttpServletResponse
-	 * response) throws ServletException, IOException { // TODO Auto-generated
-	 * method stub doGet(request, response); }
-	 */
-
-	
-	protected void doGetVersion2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+protected void doGetVersion2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Offre offre = null;
 
@@ -59,8 +52,7 @@ public class OffreDetails extends HttpServlet {
 		String idOffre = (String) session.getAttribute("idOffre");
 		ArrayList<Offre> arrayOffre = null;
 		
-		String email = (String) session.getAttribute("email");
-		System.out.println("email in offre details:" + email);
+		
 
 		try {
 			
@@ -69,6 +61,7 @@ public class OffreDetails extends HttpServlet {
             
             Connection connection = dataSource.getConnection();
             
+            System.out.println("id offre in modifier offre: " + idOffre);
             
             java.sql.PreparedStatement stDisplayOffre = connection.prepareStatement("SELECT * FROM offres JOIN etat ON offres.idEtat = etat.id WHERE offres.id = " + idOffre + ";");
             
@@ -147,8 +140,6 @@ public class OffreDetails extends HttpServlet {
 				obj.put("etat", etat);
 				
 				
-				
-				
 
 				arrayOffre.add(offre);
 
@@ -156,7 +147,7 @@ public class OffreDetails extends HttpServlet {
 
 			}
 			
-			json.put("jsonArrayDetails", list);
+			json.put("jsonArrayModify", list);
 		
 			out = response.getWriter();
 			out.print(json.toString());
