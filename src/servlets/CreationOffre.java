@@ -2,6 +2,8 @@ package servlets;
 
 import java.io.IOException;
 import java.util.Date;
+
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,9 @@ import ejb.CreationOffreEJB;
 public class CreationOffre extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@EJB
+	CreationOffreEJB creation = new CreationOffreEJB();
+	
 	public CreationOffre() {
 		super();
 	}
@@ -34,7 +39,6 @@ public class CreationOffre extends HttpServlet {
 
 		Offre offre = new Offre();
 		String email = "katia.nseir@gmail.co";
-		CreationOffreEJB creation = new CreationOffreEJB();
 
 		HttpSession session = request.getSession();
 

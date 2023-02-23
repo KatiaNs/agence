@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
+
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +25,9 @@ import ejb.AllOffresEJB;
 public class AllOffres extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@EJB
+	AllOffresEJB arrayOffre = new AllOffresEJB();
+	
 	public AllOffres() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -36,8 +41,6 @@ public class AllOffres extends HttpServlet {
 	protected void doGetVersion2(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
-		AllOffresEJB arrayOffre = new AllOffresEJB();
 
 		JSONArray list = null;
 		JSONObject obj = null;

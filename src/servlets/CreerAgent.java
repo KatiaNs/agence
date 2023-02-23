@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.util.Date;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,9 @@ import ejb.CreerAgentEJB;
 public class CreerAgent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
+	@EJB
+	CreerAgentEJB creerAgent = new CreerAgentEJB();
+	
     public CreerAgent() {
         super();
         // TODO Auto-generated constructor stub
@@ -36,7 +39,7 @@ public class CreerAgent extends HttpServlet {
 	}
 	
 	protected void doPostVersion2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CreerAgentEJB creerAgent = new CreerAgentEJB();
+
 		User agent = new User();
 		
 		String email = request.getParameter("email");
