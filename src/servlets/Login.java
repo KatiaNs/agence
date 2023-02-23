@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.ejb.EJB;
 import javax.naming.InitialContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +27,7 @@ import ejb.LoginEJB;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@EJB
 	LoginEJB loginUser;
 
 	public Login() {
@@ -65,13 +67,12 @@ public class Login extends HttpServlet {
 
 			System.out.println("email: " + email);
 
-			if (user != null) {
+			if (user.getEmail() != null) {
 				System.out.println("in first if");
 				role = user.getRole();
 				System.out.println("Role in while: " + role);
 
 				if (role.equals("client")) {
-					user = new User();
 					obj = new JSONObject();
 					arrayUser = new ArrayList<User>();
 
@@ -110,7 +111,6 @@ public class Login extends HttpServlet {
 				}
 
 				else if (role.equals("agent")) {
-					user = new User();
 					obj = new JSONObject();
 					arrayUser = new ArrayList<User>();
 
@@ -118,7 +118,7 @@ public class Login extends HttpServlet {
 
 					session.setAttribute("email", user.getEmail());
 					session.setAttribute("firstName", user.getFirstName());
-					session.setAttribute("lastName", user.getLastName()a);
+					session.setAttribute("lastName", user.getLastName());
 					session.setAttribute("role", role);
 
 					obj.put("status", status);
@@ -149,7 +149,6 @@ public class Login extends HttpServlet {
 				}
 
 				else if (role.equals("admin")) {
-					user = new User();
 					obj = new JSONObject();
 					arrayUser = new ArrayList<User>();
 
