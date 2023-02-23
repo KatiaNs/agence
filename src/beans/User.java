@@ -24,6 +24,7 @@ public class User implements Serializable{
 	private String address;
 	private String password;
 	private Integer idRole;
+	private String role;
 	
 
 	public Integer getId() {
@@ -68,6 +69,14 @@ public class User implements Serializable{
 	}
 	public Integer getIdRole() {
 		return idRole;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	

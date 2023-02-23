@@ -26,7 +26,6 @@ import beans.User;
 
 @Stateless
 public class LoginEJB {
-	private final static String _SQL_SELECT_OPERATIONS = "SELECT u FROM user u WHERE u.email = :email AND u.password = :password";
 
 	@PersistenceUnit(unitName = "webProject")
 	private EntityManagerFactory emf;
@@ -99,6 +98,7 @@ public class LoginEJB {
 						user.setAddress(address);
 						user.setPhone(phone);
 						user.setPassword(password);
+						user.setRole("client");
 
 						arrayUser.add(user);
 
@@ -127,6 +127,7 @@ public class LoginEJB {
 						user.setAddress(address);
 						user.setPhone(phone);
 						user.setPassword(password);
+						user.setRole("agent");
 
 						arrayUser.add(user);
 
@@ -154,6 +155,7 @@ public class LoginEJB {
 						user.setAddress(address);
 						user.setPhone(phone);
 						user.setPassword(password);
+						user.setRole("admin");
 
 						arrayUser.add(user);
 
@@ -163,16 +165,20 @@ public class LoginEJB {
 					}
 
 				}
-				
-			}else {
+
+			} else {
 
 				System.out.println("in first else");
 				errorMessage = "Nom identifiant ou mot de passe incorrect";
 				System.out.println("STATUS: " + status);
 				System.out.println("error, no user found");
 			}
+
+			connection.close();
+			connection2.close();
+
 		} catch (Exception e2) {
-			
+
 			System.out.println(e2.getMessage().toString());
 		}
 		return user;

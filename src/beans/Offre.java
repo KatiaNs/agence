@@ -2,9 +2,20 @@ package beans;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="offres")
+@NamedQuery(name="Offre.findAll", query="SELECT o FROM Offre o")
 public class Offre implements Serializable {
-	
+
+	private static final long serialVersionUID = 1L;
 	// c'est la ref de l'offrre
+	@Id
 	private Integer id;
 	private String title;
 	private Double price;
