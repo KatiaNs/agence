@@ -70,6 +70,10 @@ public class User implements Serializable{
 	public Integer getIdRole() {
 		return idRole;
 	}
+	
+	public void setIdRole(Integer idRole) {
+		this.idRole = idRole;
+	}
 
 	public String getRole() {
 		return role;
